@@ -91,8 +91,8 @@
   }
   @media (min-width: 1024px) {
     html {
-      /* Scales everything perfectly down by 35% on laptops/desktops */
-      font-size: 65%; 
+      /* Scales everything down nicely while container lock prevents stretching */
+      font-size: 80%; 
     }
   }
   body {
