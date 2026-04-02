@@ -91,8 +91,8 @@
   }
   @media (min-width: 1024px) {
     html {
-      /* Scales everything perfectly down by 25% on laptops/desktops */
-      font-size: 75%; 
+      /* Scales everything perfectly down by 35% on laptops/desktops */
+      font-size: 65%; 
     }
   }
   body {
