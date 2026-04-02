@@ -136,7 +136,7 @@ const Index = () => {
         </div>
         
         <div className="container mx-auto px-6 relative z-20">
-          <div className="max-w-3xl flex flex-col items-start text-left">
+          <div className="max-w-3xl flex flex-col items-start text-left mt-24 md:mt-32">
             <h1 className="text-[40px] md:text-8xl font-bold leading-[1.1] mb-6 text-white drop-shadow-lg">
               Invista no seu futuro <span className="text-accent underline decoration-accent/50 underline-offset-8">comigo</span>.
             </h1>
