@@ -1,0 +1,13 @@
+Initialising login role...
+Connecting to remote database...
+Do you want to push these migrations to the remote database?
+ • 20260306161500_create_ai_agents.sql
+
+ [Y/n] Applying migration 20260306161500_create_ai_agents.sql...
+ERROR: function public.update_updated_at_column() does not exist (SQLSTATE 42883)
+At statement: 5                                                                  
+-- Função de trigger para atualizar o updated_at                                 
+create trigger update_ai_agents_updated_at                                       
+  before update on public.ai_agents                                              
+  for each row execute procedure public.update_updated_at_column()               
+Try rerunning the command with --debug to troubleshoot the error.

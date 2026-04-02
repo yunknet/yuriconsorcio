@@ -1,0 +1,117 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@700;800;900&family=Space+Grotesk:wght@400;500;600;700&family=Geist:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --font-geist: 'Geist', sans-serif;
+
+    --background: 0 0% 100%;
+    --foreground: 205 100% 10%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 205 100% 10%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 205 100% 10%;
+
+    /* Navy Blue */
+    --primary: 205 100% 14%;
+    --primary-foreground: 0 0% 100%;
+
+    /* Light Blue Backgrounds */
+    --secondary: 205 20% 96%;
+    --secondary-foreground: 205 100% 14%;
+
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+
+    /* Gold / Yellow Accent */
+    --accent: 40 93% 50%;
+    --accent-foreground: 205 100% 14%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 205 100% 14%;
+
+    --radius: 0.75rem;
+
+    /* WhatsApp */
+    --whatsapp: 142 70% 49%;
+    --whatsapp-dark: 142 70% 35%;
+
+    --shadow-card: 0 12px 40px rgba(0, 43, 73, 0.08);
+  }
+
+  .dark {
+    --background: 205 100% 5%;
+    --foreground: 210 40% 98%;
+
+    --card: 205 50% 8%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 205 50% 8%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 205 100% 30%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 205 40% 12%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 205 40% 15%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --accent: 40 93% 50%;
+    --accent-foreground: 205 100% 10%;
+
+    --border: 205 40% 15%;
+    --input: 205 40% 15%;
+    --ring: 205 100% 30%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+}
+
+@layer utilities {
+  .text-gradient {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(135deg, hsl(40 93% 60%) 0%, hsl(30 90% 45%) 100%);
+  }
+  .bg-gradient-gold {
+    background-image: linear-gradient(135deg, hsl(40 93% 60%) 0%, hsl(30 90% 45%) 100%);
+  }
+  .bg-gradient-navy {
+    background-image: linear-gradient(135deg, hsl(205 100% 20%) 0%, hsl(205 100% 10%) 100%);
+  }
+}
+
+/* Animations that are nice to have */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes pulse-glow {
+  0%, 100% { opacity: 1; box-shadow: 0 0 20px rgba(248, 183, 57, 0.4); }
+  50% { opacity: 0.8; box-shadow: 0 0 40px rgba(248, 183, 57, 0.6); }
+}
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}

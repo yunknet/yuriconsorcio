@@ -1,0 +1,21 @@
+Initialising login role...
+Connecting to remote database...
+Do you want to push these migrations to the remote database?
+ • 20241217000000_create_schema.sql
+ • 20251221000001_create_profiles_table.sql
+ • 20251221000003_fix_missing_profiles.sql
+ • 20260211170000_fix_rls_final.sql
+ • 20260213000000_security_fixes.sql
+ • 20260217000000_add_delete_policy.sql
+ • 20260306161500_create_ai_agents.sql
+
+ [Y/n] Applying migration 20241217000000_create_schema.sql...
+NOTICE (42P07): relation "subscriptions" already exists, skipping
+ERROR: column "phone_number" does not exist (SQLSTATE 42703)
+At statement: 5                                             
+-- Unique phone only when present                           
+CREATE UNIQUE INDEX IF NOT EXISTS idx_unique_phone          
+ON public.subscriptions (phone_number)                      
+WHERE phone_number IS NOT NULL                              
+      ^                                                     
+Try rerunning the command with --debug to troubleshoot the error.
