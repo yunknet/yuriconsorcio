@@ -1,13 +1,15 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { ChevronRight, ChevronLeft, Car, Home, Tractor, TrendingUp, Zap, BookOpen, Send } from "lucide-react";
+import { ChevronRight, ChevronLeft, Car, Home, Wrench, TrendingUp, Landmark, Zap, BookOpen, Send } from "lucide-react";
 
 const WHATSAPP_NUMBER = "5538991118169";
 
 const typeOptions = [
-  { id: "Veículos", label: "Consórcio de Carro", icon: Car, min: 50000, max: 300000, step: 5000 },
-  { id: "Imóveis", label: "Consórcio de Imóvel", icon: Home, min: 100000, max: 1000000, step: 10000 },
-  { id: "Pesados", label: "Consórcio de Veículo Pesado", icon: Tractor, min: 200000, max: 1500000, step: 10000 },
+  { id: "Veículos", label: "Consórcio de Veículos", icon: Car, min: 50000, max: 300000, step: 5000 },
+  { id: "Imóveis", label: "Consórcio de Imóveis", icon: Home, min: 100000, max: 1000000, step: 10000 },
+  { id: "Serviços", label: "Serviços (Cirurgia, Reforma etc...)", icon: Wrench, min: 15000, max: 150000, step: 5000 },
+  { id: "Alavancagem financeira", label: "Alavancagem financeira", icon: TrendingUp, min: 100000, max: 2000000, step: 20000 },
+  { id: "Alavancagem patrimonial", label: "Alavancagem patrimonial", icon: Landmark, min: 200000, max: 5000000, step: 50000 },
 ];
 
 const objectiveOptions = [
