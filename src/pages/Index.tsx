@@ -50,16 +50,16 @@ const Index = () => {
       {/* Header / Hero Section */}
       <header className="relative bg-gradient-navy text-primary-foreground min-h-[90vh] flex items-start pt-12 md:pt-16 pb-16 overflow-hidden">
         <div className="absolute inset-0 z-0 bg-primary">
-          <div className="absolute inset-y-0 right-0 w-full lg:w-[60%] z-0">
+          <div className="absolute inset-y-0 right-0 w-full lg:w-[70%] z-0">
             <img 
               src="/yuri1.jpg" 
-              alt="Fundo" 
-              className="w-full h-full object-cover object-[center_top] sm:object-[center_20%] opacity-50"
+              alt="Yuri Soares" 
+              className="w-full h-full object-cover object-[center_top] sm:object-[right_20%] opacity-100"
             />
-            {/* Gradiente para suavizar a transição da cor sólida para a foto */}
-            <div className="absolute inset-0 bg-gradient-to-r from-primary via-primary/60 to-transparent" />
+            {/* Gradiente para suavizar a transição lateral sem escurecer muito a foto do Yuri */}
+            <div className="absolute inset-0 bg-gradient-to-r from-primary via-primary/50 to-transparent" />
           </div>
-          <div className="absolute inset-0 bg-gradient-to-t from-primary via-transparent to-transparent z-10" />
+          <div className="absolute inset-0 bg-gradient-to-t from-primary/80 via-transparent to-transparent z-10" />
         </div>
         
         <div className="container mx-auto px-6 relative z-10">
