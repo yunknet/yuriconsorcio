@@ -14,17 +14,19 @@ import {
   ArrowRight,
   CheckCircle,
   CheckCircle2,
-  ShieldCheck,
-  Target,
-  Trophy,
   Star,
-  Quote
+  Quote,
+  Phone,
+  Menu,
+  X
 } from "lucide-react";
 
 const WHATSAPP_LINK = "https://wa.me/5538991118169?text=Ol%C3%A1+Vi+seu+site+e+gostaria+de+fazer+uma+simula%C3%A7%C3%A3o+de+cons%C3%B3rcio";
 
 const Index = () => {
   const [formData, setFormData] = useState({ name: "", whatsapp: "", goal: "" });
+
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const handleFormSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -33,9 +35,75 @@ const Index = () => {
     window.open(url, "_blank");
   };
 
+  const navLinks = [
+    { name: "Início", href: "#inicio" },
+    { name: "Simulador", href: "#simulador" },
+    { name: "Depoimentos", href: "#depoimentos" },
+    { name: "Dúvidas", href: "#duvidas" },
+  ];
+
   return (
     <div className="min-h-screen bg-background font-sans text-foreground selection:bg-accent/30 overflow-x-hidden">
       
+      {/* Fixed Navigation Header */}
+      <nav className="fixed top-0 left-0 right-0 z-[100] bg-white/95 backdrop-blur-md border-b border-slate-100 shadow-sm py-4">
+        <div className="container mx-auto px-6 flex items-center justify-between">
+          <a href="#inicio" className="flex items-center gap-3 group">
+            <div className="relative w-12 h-12 rounded-full overflow-hidden border-2 border-primary group-hover:border-accent transition-colors">
+              <img src="/Logo.png" alt="Yuri Soares" className="w-full h-full object-cover scale-150 mt-1" />
+            </div>
+            <div className="flex flex-col">
+              <span className="font-bold text-primary text-lg leading-tight">Yuri Soares</span>
+              <span className="text-[10px] uppercase tracking-widest text-muted-foreground font-semibold">Consultor de Consórcios</span>
+            </div>
+          </a>
+
+          {/* Desktop Menu */}
+          <div className="hidden lg:flex items-center gap-8">
+            {navLinks.map((link) => (
+              <a 
+                key={link.name} 
+                href={link.href} 
+                className="text-sm font-bold text-slate-600 hover:text-primary transition-colors uppercase tracking-wider"
+              >
+                {link.name}
+              </a>
+            ))}
+            <a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer">
+              <Button size="sm" className="bg-primary hover:bg-primary/90 text-white font-bold rounded-full px-6 flex items-center gap-2 border-none">
+                <Phone className="w-4 h-4" /> Fale Comigo
+              </Button>
+            </a>
+          </div>
+
+          {/* Mobile Menu Toggle */}
+          <button className="lg:hidden p-2 text-primary focus:outline-none" onClick={() => setIsMenuOpen(!isMenuOpen)}>
+            {isMenuOpen ? <X className="w-7 h-7" /> : <Menu className="w-7 h-7" />}
+          </button>
+        </div>
+
+        {/* Mobile Menu Overlay */}
+        {isMenuOpen && (
+          <div className="lg:hidden absolute top-full left-0 right-0 bg-white border-b border-slate-100 shadow-xl animate-in slide-in-from-top duration-300">
+            <div className="flex flex-col p-6 gap-4">
+              {navLinks.map((link) => (
+                <a 
+                  key={link.name} 
+                  href={link.href} 
+                  onClick={() => setIsMenuOpen(false)}
+                  className="text-base font-bold text-slate-700 hover:text-primary py-2 border-b border-slate-50 last:border-0"
+                >
+                  {link.name}
+                </a>
+              ))}
+              <a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer" className="mt-2">
+                <Button className="w-full bg-primary text-white font-bold h-12 rounded-xl">Fale Comigo</Button>
+              </a>
+            </div>
+          </div>
+        )}
+      </nav>
+
       {/* Floating WhatsApp Button */}
       <a 
         href={WHATSAPP_LINK}
@@ -48,42 +116,41 @@ const Index = () => {
       </a>
 
       {/* Header / Hero Section */}
-      <header className="relative bg-gradient-navy text-primary-foreground min-h-[90vh] flex items-start pt-12 md:pt-16 pb-16 overflow-hidden">
+      <header id="inicio" className="relative bg-gradient-navy text-primary-foreground min-h-screen flex items-center pt-24 pb-16 overflow-hidden">
         <div className="absolute inset-0 z-0 bg-primary">
           <div className="absolute inset-y-0 right-0 w-full lg:w-[70%] z-0">
             <img 
               src="/yuri1.jpg" 
               alt="Yuri Soares" 
-              className="w-full h-full object-cover object-[center_top] sm:object-[right_20%] opacity-100"
+              className="w-full h-full object-cover object-[70%_top] lg:object-[right_20%] opacity-100"
             />
             {/* Gradiente para suavizar a transição lateral sem escurecer muito a foto do Yuri */}
-            <div className="absolute inset-0 bg-gradient-to-r from-primary via-primary/50 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-r from-primary via-primary/50 to-transparent lg:block hidden" />
+            <div className="absolute inset-0 bg-gradient-to-t from-primary via-primary/20 to-transparent lg:hidden block" />
           </div>
-          <div className="absolute inset-0 bg-gradient-to-t from-primary/80 via-transparent to-transparent z-10" />
+          <div className="absolute inset-0 bg-gradient-to-t from-primary/95 via-transparent to-transparent z-10" />
         </div>
         
-        <div className="container mx-auto px-6 relative z-10">
-          <div className="max-w-3xl flex flex-col items-start">
-            <div className="mb-10">
-              <img src="/Logo.png" alt="Yuri Soares Consórcios" className="h-40 md:h-56 object-contain drop-shadow-lg" />
-            </div>
-            
-            <h1 className="text-4xl md:text-8xl font-bold leading-tight mb-6 text-white drop-shadow-md">
+        <div className="container mx-auto px-6 relative z-20">
+          <div className="max-w-3xl flex flex-col items-start text-left">
+            <h1 className="text-[40px] md:text-8xl font-bold leading-[1.1] mb-6 text-white drop-shadow-lg">
               Invista no seu futuro <span className="text-accent underline decoration-accent/50 underline-offset-8">comigo</span>.
             </h1>
             
-            <p className="text-lg md:text-3xl text-blue-100 mb-10 max-w-3xl leading-relaxed">
-              Realize seus sonhos sem juros e sem entrada. Parcelas que cabem no seu bolso, com toda a segurança.
+            <p className="text-lg md:text-3xl text-blue-100 mb-10 max-w-xl leading-relaxed">
+              Realize seus sonhos sem juros e sem entrada. <span className="block mt-2">Parcelas que cabem no seu bolso, com toda a segurança.</span>
             </p>
             
-            <a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto">
-              <Button size="lg" className="w-full sm:w-auto bg-gradient-gold hover:opacity-90 text-primary uppercase font-bold tracking-wide h-16 px-10 text-lg shadow-card border-none rounded-xl group transition-all">
-                Quero fazer uma simulação gratuita
-                <ArrowRight className="ml-3 w-5 h-5 group-hover:translate-x-1 transition-transform" />
-              </Button>
-            </a>
+            <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
+              <a href="#simulador" className="w-full sm:w-auto">
+                <Button size="lg" className="w-full sm:w-auto bg-gradient-gold hover:opacity-90 text-primary uppercase font-bold tracking-wide h-16 px-6 md:px-10 text-[15px] md:text-lg shadow-card border-none rounded-xl group transition-all shrink-0 whitespace-nowrap overflow-hidden text-ellipsis">
+                  Fazer simulação gratuita
+                  <ArrowRight className="ml-3 w-5 h-5 group-hover:translate-x-1 transition-transform shrink-0" />
+                </Button>
+              </a>
+            </div>
             
-            <div className="mt-10 flex items-center gap-4 text-sm font-medium text-blue-200">
+            <div className="mt-10 flex flex-wrap items-center gap-4 text-sm font-medium text-blue-200">
               <span className="flex items-center gap-2"><ShieldCheck className="w-5 h-5 text-accent" /> Compra Segura</span>
               <span className="flex items-center gap-2"><Trophy className="w-5 h-5 text-accent" /> Especialista</span>
             </div>
@@ -306,7 +373,7 @@ const Index = () => {
           </div>
           
           {/* Seção de Depoimentos (Feedbacks) */}
-          <div className="mt-24">
+          <div className="mt-24" id="depoimentos">
             <div className="text-center mb-16">
               <h2 className="text-3xl md:text-5xl font-bold mb-6 text-primary">O que dizem nossos clientes</h2>
               <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
