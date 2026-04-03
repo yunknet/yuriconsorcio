@@ -160,7 +160,7 @@ const Index = () => {
             </div>
             
             <div className="mt-10 flex flex-wrap items-center gap-4 text-sm font-medium text-blue-200">
-              <span className="flex items-center gap-2"><Trophy className="w-5 h-5 text-accent" /> Especialista</span>
+              <span className="flex items-center gap-2"><Trophy className="w-5 h-5 text-accent" /> Especialista - Yuri Soares</span>
             </div>
           </div>
         </div>
@@ -424,10 +424,10 @@ const Index = () => {
 
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
               {[
-                { name: "Carlos", city: "São Paulo", initial: "C", text: "Sou cliente do consórcio há anos e sempre tive um atendimento respeitoso. O Yuri me ajudou a encontrar o plano perfeito!" },
-                { name: "Aline", city: "São Paulo", initial: "A", text: "Conquistei meu carro dos sonhos! Já faz 1 ano da minha conquista. Recomendo demais o atendimento do Yuri." },
-                { name: "Gabriel", city: "São Paulo", initial: "G", text: "Com o sonho do carro próprio, comprei uma cota de consórcio. O processo foi simples e transparente do início ao fim." },
-                { name: "Ana Paula", city: "Rio de Janeiro", initial: "AP", text: "Eu comprei a cota pois sou do tipo que só guarda dinheiro se tem um boleto para pagar. Melhor decisão que tomei!" }
+                { name: "Lucas", city: "Montes Claros", initial: "L", text: "Sou cliente do consórcio há anos e sempre tive um atendimento respeitoso. O Yuri me ajudou a encontrar o plano perfeito!" },
+                { name: "Fernanda", city: "Janaúba", initial: "F", text: "Conquistei meu carro dos sonhos! Já faz 1 ano da minha conquista. Recomendo demais o atendimento do Yuri." },
+                { name: "Rodrigo", city: "Januária", initial: "R", text: "Com o sonho do carro próprio, comprei uma cota de consórcio. O processo foi simples e transparente do início ao fim." },
+                { name: "Juliana", city: "Bocaiuva", initial: "J", text: "Eu comprei a cota pois sou do tipo que só guarda dinheiro se tem um boleto para pagar. Melhor decisão que tomei!" }
               ].map((testimonial, idx) => (
                 <div key={idx} className="bg-slate-50/50 p-8 rounded-3xl border border-slate-100 flex flex-col relative group hover:bg-white hover:shadow-xl hover:shadow-primary/5 transition-all duration-300">
                   <div className="flex justify-between items-start mb-6">
