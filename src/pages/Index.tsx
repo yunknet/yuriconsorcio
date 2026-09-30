@@ -114,7 +114,7 @@ const Index = () => {
               <img 
                 src="/yuri1.jpeg" 
                 alt="Yuri Soares" 
-                className="w-full h-full object-cover object-[40%_top] lg:object-[30%_0%] opacity-90 mix-blend-luminosity"
+                className="w-full h-full object-cover object-[center_top] lg:object-[center_10%] opacity-90 mix-blend-luminosity"
               />
               {/* Gradiente superior forte exatamente em cima da divisão da imagem para camuflar o corte */}
               <div className="absolute top-16 md:top-32 inset-x-0 h-40 md:h-64 bg-gradient-to-b from-primary via-primary/80 to-transparent z-10" />
@@ -198,7 +198,7 @@ const Index = () => {
           <div className="flex flex-col lg:flex-row items-center gap-16">
             <div className="w-full lg:w-5/12 relative">
               <div className="relative rounded-2xl overflow-hidden shadow-2xl border-4 border-white z-10 w-full aspect-[3/4] max-w-md mx-auto">
-                <img src="/1.jpeg" alt="Yuri Soares" className="w-full h-full object-cover" />
+                <img src="/1.jpeg" alt="Yuri Soares" className="w-full h-full object-cover object-[center_top]" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-6">
                   <div>
                     <h3 className="text-white text-2xl font-bold">Yuri Soares</h3>
@@ -278,7 +278,9 @@ const Index = () => {
 
         <div className="container mx-auto px-6 relative z-10 w-full">
           <div className="flex justify-center mb-12">
-            <img src="/4.jpeg?v=2" alt="Yuri Soares - Estratégias" className="rounded-3xl shadow-2xl w-full max-w-md h-auto border-4 border-white/10" />
+            <div className="rounded-3xl shadow-2xl overflow-hidden border-4 border-white/10 w-full max-w-sm max-h-[500px]">
+              <img src="/4.jpeg?v=3" alt="Yuri Soares - Estratégias" className="w-full h-auto object-cover object-top scale-[1.10] origin-top transition-transform" />
+            </div>
           </div>
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-5xl font-bold mb-6">4 Formas de pegar seu crédito rápido.</h2>

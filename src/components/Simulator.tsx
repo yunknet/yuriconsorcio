@@ -47,7 +47,7 @@ export function Simulator() {
     for (let i = 0; i <= 10000; i += 500) {
       if (i <= credit) values.push(i);
     }
-    
+
     let nextValue = Math.ceil(10001 / type.step) * type.step;
     while (nextValue <= credit) {
       if (!values.includes(nextValue)) {
@@ -55,7 +55,7 @@ export function Simulator() {
       }
       nextValue += type.step;
     }
-    
+
     if (values[values.length - 1] !== credit) {
       values.push(credit);
     }
@@ -103,8 +103,8 @@ export function Simulator() {
     <div className="bg-white rounded-3xl shadow-xl border border-slate-100 overflow-hidden flex flex-col h-full relative">
       {/* ProgressBar */}
       <div className="absolute top-0 left-0 w-full flex h-1 bg-slate-100">
-        <div 
-          className="h-full bg-primary transition-all duration-300 ease-in-out" 
+        <div
+          className="h-full bg-primary transition-all duration-300 ease-in-out"
           style={{ width: `${(step / 3) * 100}%` }}
         />
       </div>
@@ -118,17 +118,16 @@ export function Simulator() {
         {step === 1 && (
           <div className="animate-fade-in flex flex-col flex-grow">
             <h3 className="text-2xl font-bold text-slate-800 mb-6">Escolha o tipo de consórcio</h3>
-            
+
             <div className="space-y-3 mb-8">
               {typeOptions.map((opt) => (
                 <button
                   key={opt.id}
                   onClick={() => handleTypeChange(opt)}
-                  className={`w-full flex items-center gap-4 p-4 rounded-xl border-2 transition-all text-left ${
-                    type.id === opt.id 
-                      ? "border-primary bg-blue-50/50" 
+                  className={`w-full flex items-center gap-4 p-4 rounded-xl border-2 transition-all text-left ${type.id === opt.id
+                      ? "border-primary bg-blue-50/50"
                       : "border-slate-100 hover:border-slate-200"
-                  }`}
+                    }`}
                 >
                   <opt.icon className={`w-6 h-6 ${type.id === opt.id ? "text-primary" : "text-slate-400"}`} />
                   <span className={`font-semibold ${type.id === opt.id ? "text-primary" : "text-slate-600"}`}>
@@ -143,17 +142,17 @@ export function Simulator() {
                 <span className="text-slate-500 font-medium text-sm">Valor do crédito</span>
                 <span className="text-3xl font-bold text-primary">{formatCurrency(credit)}</span>
               </div>
-              
-              <input 
-                type="range" 
-                min={type.min} 
-                max={type.max} 
+
+              <input
+                type="range"
+                min={type.min}
+                max={type.max}
                 step={type.step}
                 value={credit}
                 onChange={(e) => setCredit(Number(e.target.value))}
                 className="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-primary"
               />
-              
+
               <div className="flex justify-between text-xs text-slate-400 font-medium mt-2">
                 <span>{formatCurrency(type.min)}</span>
                 <span>{formatCurrency(type.max)}</span>
@@ -161,8 +160,8 @@ export function Simulator() {
             </div>
 
             <div className="mt-auto pt-8">
-              <Button 
-                onClick={() => setStep(2)} 
+              <Button
+                onClick={() => setStep(2)}
                 className="w-full h-14 text-lg font-bold bg-primary hover:bg-primary/90 text-white rounded-xl shadow-md"
               >
                 Próximo <ChevronRight className="ml-2 w-5 h-5" />
@@ -184,11 +183,10 @@ export function Simulator() {
                 <div key={opt.id} className="flex flex-col gap-3">
                   <button
                     onClick={() => setObjective(opt.id)}
-                    className={`w-full flex items-start gap-4 p-5 rounded-2xl border-2 transition-all text-left ${
-                      objective === opt.id 
-                        ? "border-primary bg-blue-50/50" 
+                    className={`w-full flex items-start gap-4 p-5 rounded-2xl border-2 transition-all text-left ${objective === opt.id
+                        ? "border-primary bg-blue-50/50"
                         : "border-slate-100 hover:border-slate-200"
-                    }`}
+                      }`}
                   >
                     <div className={`p-2 rounded-lg ${objective === opt.id ? "bg-primary/10 text-primary" : "bg-slate-50 text-slate-400"}`}>
                       <opt.icon className="w-5 h-5" />
@@ -210,12 +208,12 @@ export function Simulator() {
                         <span className="text-slate-700 font-medium text-sm sm:text-base flex-1 leading-tight">Quanto de lance você tem em mãos?</span>
                         <span className="text-xl sm:text-2xl font-bold text-primary whitespace-nowrap">{formatCurrency(bid)}</span>
                       </div>
-                      
+
                       <div>
-                        <input 
-                          type="range" 
-                          min={0} 
-                          max={bidValues.length - 1} 
+                        <input
+                          type="range"
+                          min={0}
+                          max={bidValues.length - 1}
                           step={1}
                           value={currentBidIndex}
                           onChange={(e) => setBid(bidValues[Number(e.target.value)])}
@@ -233,15 +231,15 @@ export function Simulator() {
             </div>
 
             <div className="mt-auto pt-4 flex gap-4">
-              <Button 
-                variant="outline" 
-                onClick={() => setStep(1)} 
+              <Button
+                variant="outline"
+                onClick={() => setStep(1)}
                 className="h-14 px-6 border-slate-200 text-slate-600 rounded-xl hover:bg-slate-50"
               >
                 <ChevronLeft className="mr-2 w-5 h-5" /> Voltar
               </Button>
-              <Button 
-                onClick={() => setStep(3)} 
+              <Button
+                onClick={() => setStep(3)}
                 disabled={!objective}
                 className="flex-1 h-14 text-lg font-bold bg-primary hover:bg-primary/90 text-white rounded-xl shadow-md disabled:opacity-50"
               >
@@ -274,20 +272,20 @@ export function Simulator() {
               </div>
 
               <div className="mt-auto pt-6 pb-2 flex flex-row gap-3 items-center">
-                <Button 
+                <Button
                   type="button"
-                  variant="outline" 
-                  onClick={() => setStep(2)} 
+                  variant="outline"
+                  onClick={() => setStep(2)}
                   className="w-14 h-14 p-0 flex items-center justify-center border-slate-200 text-slate-600 rounded-xl hover:bg-slate-50 shrink-0"
                 >
                   <ChevronLeft className="w-6 h-6" />
                 </Button>
-                <Button 
-                  type="submit" 
+                <Button
+                  type="submit"
                   disabled={formData.name.trim().length < 2}
                   className="flex-1 h-14 text-[15px] sm:text-base font-bold bg-[#25D366] hover:bg-[#20bd5a] text-white rounded-xl shadow-md border-none disabled:opacity-50 flex items-center justify-center overflow-hidden"
                 >
-                  <Send className="mr-2 w-5 h-5 shrink-0" /> 
+                  <Send className="mr-2 w-5 h-5 shrink-0" />
                   <span className="truncate">Enviar WhatsApp</span>
                 </Button>
               </div>
