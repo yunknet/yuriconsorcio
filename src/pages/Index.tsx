@@ -27,8 +27,8 @@ import {
   Bike
 } from "lucide-react";
 
-import { getNextTeamMemberAsync } from "@/lib/teamRotation";
-import { initUTMTracking, trackPageView, trackWhatsAppClick, getUTMSummaryTag } from "@/lib/tracking";
+import { getNextTeamMember, getNextTeamMemberAsync } from "@/lib/teamRotation";
+import { initUTMTracking, trackPageView, trackWhatsAppClick, getUTMSummaryTag, redirectToWhatsApp } from "@/lib/tracking";
 
 const Index = () => {
   const [formData, setFormData] = useState({ name: "", whatsapp: "", goal: "" });
@@ -42,19 +42,36 @@ const Index = () => {
   const handleContactTeam = async (location: string = "header") => {
     trackWhatsAppClick(location);
     const utmTag = getUTMSummaryTag();
-    const member = await getNextTeamMemberAsync();
+    let member;
+    try {
+      member = await Promise.race([
+        getNextTeamMemberAsync(),
+        new Promise<any>((resolve) => setTimeout(() => resolve(getNextTeamMember()), 350)),
+      ]);
+    } catch {
+      member = getNextTeamMember();
+    }
     const text = encodeURIComponent("Olá! Vi seu site e gostaria de fazer uma simulação de consórcio.") + utmTag;
-    window.open(`https://wa.me/${member.phone}?text=${text}`, "_blank");
+    const url = `https://wa.me/${member.phone}?text=${text}`;
+    redirectToWhatsApp(url);
   };
 
   const handleFormSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     trackWhatsAppClick("form_index");
     const utmTag = getUTMSummaryTag();
-    const member = await getNextTeamMemberAsync(formData.name);
+    let member;
+    try {
+      member = await Promise.race([
+        getNextTeamMemberAsync(formData.name),
+        new Promise<any>((resolve) => setTimeout(() => resolve(getNextTeamMember(formData.name)), 350)),
+      ]);
+    } catch {
+      member = getNextTeamMember(formData.name);
+    }
     const text = encodeURIComponent(`Olá! Meu nome é ${formData.name}. Tenho interesse em conquistar: ${formData.goal}. Podemos conversar?`) + utmTag;
     const url = `https://wa.me/${member.phone}?text=${text}`;
-    window.open(url, "_blank");
+    redirectToWhatsApp(url);
   };
 
   const navLinks = [
@@ -159,12 +176,24 @@ const Index = () => {
             
             <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
               <Button 
-                onClick={() => document.getElementById('simulador')?.scrollIntoView({ behavior: 'smooth' })}
+                asChild
                 size="lg" 
-                className="w-full sm:w-auto bg-gradient-gold hover:opacity-90 text-primary uppercase font-extrabold tracking-wide min-h-[58px] sm:min-h-[64px] py-4 px-6 sm:px-10 text-base sm:text-lg shadow-xl shadow-amber-500/25 border-none rounded-2xl group transition-all shrink-0 whitespace-nowrap overflow-hidden flex items-center justify-center gap-2.5"
+                className="w-full sm:w-auto bg-gradient-gold hover:opacity-90 text-primary uppercase font-extrabold tracking-wide min-h-[58px] sm:min-h-[64px] py-4 px-6 sm:px-10 text-base sm:text-lg shadow-xl shadow-amber-500/25 border-none rounded-2xl group transition-all shrink-0 whitespace-nowrap overflow-hidden flex items-center justify-center gap-2.5 cursor-pointer no-underline"
               >
-                <span>Fazer simulação gratuita</span>
-                <ArrowRight className="w-5 h-5 group-hover:translate-x-1.5 transition-transform shrink-0" />
+                <a
+                  href="#simulador"
+                  onClick={(e) => {
+                    const el = document.getElementById('simulador');
+                    if (el) {
+                      e.preventDefault();
+                      const y = el.getBoundingClientRect().top + window.pageYOffset - 50;
+                      window.scrollTo({ top: y, behavior: 'smooth' });
+                    }
+                  }}
+                >
+                  <span>Fazer simulação gratuita</span>
+                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1.5 transition-transform shrink-0" />
+                </a>
               </Button>
             </div>
             

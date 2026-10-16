@@ -144,3 +144,28 @@ export function getUTMSummaryTag(): string {
   }
   return "";
 }
+
+/**
+ * Redireciona para o WhatsApp de forma 100% compatível com celular e desktop.
+ * No celular (iOS Safari, Android e navegadores in-app como Instagram), usa window.location.href
+ * para abrir o app oficial instantaneamente sem ser bloqueado pelo popup blocker.
+ */
+export function redirectToWhatsApp(url: string) {
+  if (typeof window === "undefined") return;
+
+  const userAgent = navigator.userAgent || navigator.vendor || (window as any).opera || "";
+  const isMobile =
+    /iPhone|iPad|iPod|Android|webOS|BlackBerry|IEMobile|Opera Mini/i.test(userAgent) ||
+    /Instagram|FBAN|FBAV/i.test(userAgent) ||
+    window.innerWidth <= 768;
+
+  if (isMobile) {
+    window.location.href = url;
+  } else {
+    const newWindow = window.open(url, "_blank");
+    if (!newWindow || newWindow.closed || typeof newWindow.closed === "undefined") {
+      window.location.href = url;
+    }
+  }
+}
+
