@@ -237,16 +237,16 @@ export function Simulator() {
               <Button
                 variant="outline"
                 onClick={() => setStep(1)}
-                className="h-12 sm:h-14 px-4 sm:px-6 border-slate-200 text-slate-600 rounded-xl hover:bg-slate-50 text-sm sm:text-base"
+                className="h-14 px-5 border-slate-200 text-slate-600 rounded-xl hover:bg-slate-50 text-base font-semibold"
               >
-                <ChevronLeft className="mr-1.5 w-4 h-4 sm:w-5 sm:h-5" /> Voltar
+                <ChevronLeft className="mr-1.5 w-5 h-5" /> Voltar
               </Button>
               <Button
                 onClick={() => setStep(3)}
                 disabled={!objective}
-                className="flex-1 h-12 sm:h-14 text-sm sm:text-lg font-bold bg-primary hover:bg-primary/90 text-white rounded-xl shadow-md disabled:opacity-50"
+                className="flex-1 h-14 text-base sm:text-lg font-bold bg-primary hover:bg-primary/90 text-white rounded-xl shadow-md disabled:opacity-50"
               >
-                Próximo <ChevronRight className="ml-1.5 w-4 h-4 sm:w-5 sm:h-5" />
+                Próximo <ChevronRight className="ml-1.5 w-5 h-5" />
               </Button>
             </div>
           </div>
@@ -279,16 +279,16 @@ export function Simulator() {
                   type="button"
                   variant="outline"
                   onClick={() => setStep(2)}
-                  className="w-12 h-12 sm:w-14 sm:h-14 p-0 flex items-center justify-center border-slate-200 text-slate-600 rounded-xl hover:bg-slate-50 shrink-0"
+                  className="w-14 h-14 p-0 flex items-center justify-center border-slate-200 text-slate-600 rounded-xl hover:bg-slate-50 shrink-0"
                 >
                   <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6" />
                 </Button>
                 <Button
                   type="submit"
                   disabled={formData.name.trim().length < 2}
-                  className="flex-1 h-12 sm:h-14 text-sm sm:text-base font-bold bg-[#25D366] hover:bg-[#20bd5a] text-white rounded-xl shadow-md border-none disabled:opacity-50 flex items-center justify-center gap-2 overflow-hidden"
+                  className="flex-1 min-h-[56px] h-14 text-base sm:text-lg font-bold bg-[#25D366] hover:bg-[#20bd5a] text-white rounded-xl shadow-md border-none disabled:opacity-50 flex items-center justify-center gap-2 overflow-hidden"
                 >
-                  <Send className="w-4 h-4 sm:w-5 sm:h-5 shrink-0" />
+                  <Send className="w-5 h-5 shrink-0" />
                   <span className="truncate">WhatsApp</span>
                 </Button>
               </div>

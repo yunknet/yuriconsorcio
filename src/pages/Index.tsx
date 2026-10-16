@@ -161,10 +161,10 @@ const Index = () => {
               <Button 
                 onClick={() => document.getElementById('simulador')?.scrollIntoView({ behavior: 'smooth' })}
                 size="lg" 
-                className="w-full sm:w-auto bg-gradient-gold hover:opacity-90 text-primary uppercase font-bold tracking-wide h-13 sm:h-16 px-6 sm:px-10 text-sm sm:text-base md:text-lg shadow-card border-none rounded-xl group transition-all shrink-0 whitespace-nowrap overflow-hidden text-ellipsis"
+                className="w-full sm:w-auto bg-gradient-gold hover:opacity-90 text-primary uppercase font-extrabold tracking-wide min-h-[58px] sm:min-h-[64px] py-4 px-6 sm:px-10 text-base sm:text-lg shadow-xl shadow-amber-500/25 border-none rounded-2xl group transition-all shrink-0 whitespace-nowrap overflow-hidden flex items-center justify-center gap-2.5"
               >
-                Fazer simulação gratuita
-                <ArrowRight className="ml-2.5 sm:ml-3 w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform shrink-0" />
+                <span>Fazer simulação gratuita</span>
+                <ArrowRight className="w-5 h-5 group-hover:translate-x-1.5 transition-transform shrink-0" />
               </Button>
             </div>
             
