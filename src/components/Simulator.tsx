@@ -2,7 +2,7 @@ import { useState, useMemo } from "react";
 import { Button } from "@/components/ui/button";
 import { ChevronRight, ChevronLeft, Car, Home, Wrench, TrendingUp, Landmark, Zap, BookOpen, Send, Bike } from "lucide-react";
 import { getNextTeamMember, getNextTeamMemberAsync } from "@/lib/teamRotation";
-import { trackWhatsAppClick, getUTMSummaryTag, redirectToWhatsApp } from "@/lib/tracking";
+import { trackWhatsAppClick, redirectToWhatsApp } from "@/lib/tracking";
 
 const typeOptions = [
   { id: "Veículos", label: "Consórcio de Veículos", icon: Car, min: 45000, max: 300000, step: 5000 },
@@ -95,8 +95,7 @@ export function Simulator() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     trackWhatsAppClick("simulador");
-    const utmTag = getUTMSummaryTag();
-    const text = `Olá! Fiz uma simulação no site do Yuri Soares.%0A%0A*Detalhes:*%0A- Consórcio de: ${type.id}%0A- Valor do crédito: ${formatCurrency(credit)}%0A- Objetivo: ${objective}${objective === "Lance imediato" ? `%0A- Valor do lance: ${formatCurrency(bid)}` : ""}%0A%0AMeu nome é ${formData.name}. Gostaria de ver as opções de parcelas!${utmTag}`;
+    const text = `Olá! Fiz uma simulação no site do Yuri Soares.%0A%0A*Detalhes:*%0A- Consórcio de: ${type.id}%0A- Valor do crédito: ${formatCurrency(credit)}%0A- Objetivo: ${objective}${objective === "Lance imediato" ? `%0A- Valor do lance: ${formatCurrency(bid)}` : ""}%0A%0AMeu nome é ${formData.name}. Gostaria de ver as opções de parcelas!`;
 
     let member;
     try {

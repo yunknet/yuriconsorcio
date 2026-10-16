@@ -28,7 +28,7 @@ import {
 } from "lucide-react";
 
 import { getNextTeamMember, getNextTeamMemberAsync } from "@/lib/teamRotation";
-import { initUTMTracking, trackPageView, trackWhatsAppClick, getUTMSummaryTag, redirectToWhatsApp } from "@/lib/tracking";
+import { initUTMTracking, trackPageView, trackWhatsAppClick, redirectToWhatsApp } from "@/lib/tracking";
 
 const Index = () => {
   const [formData, setFormData] = useState({ name: "", whatsapp: "", goal: "" });
@@ -41,7 +41,6 @@ const Index = () => {
 
   const handleContactTeam = async (location: string = "header") => {
     trackWhatsAppClick(location);
-    const utmTag = getUTMSummaryTag();
     let member;
     try {
       member = await Promise.race([
@@ -51,7 +50,7 @@ const Index = () => {
     } catch {
       member = getNextTeamMember();
     }
-    const text = encodeURIComponent("Olá! Vi seu site e gostaria de fazer uma simulação de consórcio.") + utmTag;
+    const text = encodeURIComponent("Olá! Vi seu site e gostaria de fazer uma simulação de consórcio.");
     const url = `https://wa.me/${member.phone}?text=${text}`;
     redirectToWhatsApp(url);
   };
@@ -59,7 +58,6 @@ const Index = () => {
   const handleFormSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     trackWhatsAppClick("form_index");
-    const utmTag = getUTMSummaryTag();
     let member;
     try {
       member = await Promise.race([
@@ -69,7 +67,7 @@ const Index = () => {
     } catch {
       member = getNextTeamMember(formData.name);
     }
-    const text = encodeURIComponent(`Olá! Meu nome é ${formData.name}. Tenho interesse em conquistar: ${formData.goal}. Podemos conversar?`) + utmTag;
+    const text = encodeURIComponent(`Olá! Meu nome é ${formData.name}. Tenho interesse em conquistar: ${formData.goal}. Podemos conversar?`);
     const url = `https://wa.me/${member.phone}?text=${text}`;
     redirectToWhatsApp(url);
   };

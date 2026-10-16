@@ -128,20 +128,9 @@ export function getClickStats() {
 }
 
 /**
- * Retorna uma tag resumida das UTMs para anexar à mensagem do WhatsApp
+ * Retorna uma tag resumida das UTMs para anexar à mensagem do WhatsApp (desativado a pedido do cliente)
  */
 export function getUTMSummaryTag(): string {
-  const utms = initUTMTracking();
-  const parts: string[] = [];
-
-  if (utms.utm_source) parts.push(`origem: ${utms.utm_source}`);
-  if (utms.utm_campaign) parts.push(`campanha: ${utms.utm_campaign}`);
-  if (utms.utm_medium) parts.push(`canal: ${utms.utm_medium}`);
-  if (utms.utm_content) parts.push(`anúncio: ${utms.utm_content}`);
-
-  if (parts.length > 0) {
-    return `%0A%0A_${encodeURIComponent("[" + parts.join(" | ") + "]")}_`;
-  }
   return "";
 }
 
