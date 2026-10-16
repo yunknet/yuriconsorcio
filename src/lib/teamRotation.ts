@@ -13,14 +13,20 @@ export interface TeamMember {
  */
 export const TEAM_MEMBERS: TeamMember[] = [
   {
+    id: "yuri",
+    name: "Yuri Soares",
+    phone: "5538991118169",
+    displayPhone: "+55 (38) 99111-8169",
+  },
+  {
     id: "equipe-1",
-    name: "Equipe Yuri Soares",
+    name: "Equipe Yuri (BH)",
     phone: "5531984175305",
     displayPhone: "+55 (31) 98417-5305",
   },
   {
     id: "equipe-2",
-    name: "Equipe Yuri Soares",
+    name: "Equipe Yuri (Norte de Minas)",
     phone: "5538998422719",
     displayPhone: "+55 (38) 99842-2719",
   },

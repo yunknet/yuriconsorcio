@@ -20,9 +20,10 @@ CREATE TABLE IF NOT EXISTS team_members (
     created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
 );
 
--- 2. Inserir os dois números com o 9º dígito
+-- 2. Inserir os 3 números da equipe (Yuri + 2 novos atendentes)
 INSERT INTO team_members (name, phone) 
 VALUES 
+  ('Yuri Soares', '5538991118169'),
   ('Equipe Yuri (BH)', '5531984175305'),
   ('Equipe Yuri (Norte de Minas)', '5538998422719')
 ON CONFLICT (phone) DO UPDATE 
