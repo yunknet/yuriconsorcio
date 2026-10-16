@@ -27,17 +27,24 @@ import {
   Bike
 } from "lucide-react";
 
-const WHATSAPP_LINK = "https://wa.me/5538991118169?text=Ol%C3%A1+Vi+seu+site+e+gostaria+de+fazer+uma+simula%C3%A7%C3%A3o+de+cons%C3%B3rcio";
+import { getNextTeamMemberAsync } from "@/lib/teamRotation";
 
 const Index = () => {
   const [formData, setFormData] = useState({ name: "", whatsapp: "", goal: "" });
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  const handleFormSubmit = (e: React.FormEvent) => {
+  const handleContactTeam = async () => {
+    const member = await getNextTeamMemberAsync();
+    const text = encodeURIComponent("Olá! Vi seu site e gostaria de fazer uma simulação de consórcio.");
+    window.open(`https://wa.me/${member.phone}?text=${text}`, "_blank");
+  };
+
+  const handleFormSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const text = `Olá Yuri! Meu nome é ${formData.name}. Tenho interesse em conquistar: ${formData.goal}. Podemos conversar?`;
-    const url = `https://wa.me/5538991118169?text=${encodeURIComponent(text)}`;
+    const member = await getNextTeamMemberAsync(formData.name);
+    const text = `Olá! Meu nome é ${formData.name}. Tenho interesse em conquistar: ${formData.goal}. Podemos conversar?`;
+    const url = `https://wa.me/${member.phone}?text=${encodeURIComponent(text)}`;
     window.open(url, "_blank");
   };
 
@@ -71,11 +78,13 @@ const Index = () => {
                 {link.name}
               </a>
             ))}
-            <a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer">
-              <Button size="sm" className="bg-primary hover:bg-primary/90 text-white font-bold rounded-full px-6 flex items-center gap-2 border-none">
-                <Phone className="w-4 h-4" /> Fale Comigo
-              </Button>
-            </a>
+            <Button 
+              onClick={handleContactTeam}
+              size="sm" 
+              className="bg-primary hover:bg-primary/90 text-white font-bold rounded-full px-6 flex items-center gap-2 border-none"
+            >
+              <Phone className="w-4 h-4" /> Fale Comigo
+            </Button>
           </div>
 
           {/* Mobile Menu Toggle */}
@@ -98,9 +107,12 @@ const Index = () => {
                   {link.name}
                 </a>
               ))}
-              <a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer" className="mt-2">
-                <Button className="w-full bg-primary text-white font-bold h-12 rounded-xl">Fale Comigo</Button>
-              </a>
+              <Button 
+                onClick={() => { setIsMenuOpen(false); handleContactTeam(); }}
+                className="w-full bg-primary text-white font-bold h-12 rounded-xl mt-2"
+              >
+                Fale Comigo
+              </Button>
             </div>
           </div>
         )}
@@ -524,7 +536,7 @@ const Index = () => {
                 <li><a href="#" className="hover:text-white transition-colors">Vantagens</a></li>
                 <li><a href="#" className="hover:text-white transition-colors">Depoimentos</a></li>
                 <li><a href="#duvidas" className="hover:text-white transition-colors">Dúvidas</a></li>
-                <li><a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">Contato</a></li>
+                <li><button onClick={handleContactTeam} className="hover:text-white transition-colors text-left">Contato</button></li>
               </ul>
             </div>
 
@@ -536,7 +548,7 @@ const Index = () => {
                   <svg className="w-5 h-5 text-primary group-hover:text-accent transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                   </svg>
-                  <a href={WHATSAPP_LINK} className="hover:text-white transition-colors">(38) 99111-8169</a>
+                  <button onClick={handleContactTeam} className="hover:text-white transition-colors text-left">Falar com a equipe no WhatsApp</button>
                 </li>
                 <li className="flex items-center gap-3 flex-wrap justify-center md:justify-start group">
                   <svg className="w-5 h-5 shrink-0 text-primary group-hover:text-accent transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">

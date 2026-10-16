@@ -1,8 +1,7 @@
 import { useState, useMemo } from "react";
 import { Button } from "@/components/ui/button";
 import { ChevronRight, ChevronLeft, Car, Home, Wrench, TrendingUp, Landmark, Zap, BookOpen, Send, Bike } from "lucide-react";
-
-const WHATSAPP_NUMBER = "5538991118169";
+import { getNextTeamMemberAsync } from "@/lib/teamRotation";
 
 const typeOptions = [
   { id: "Veículos", label: "Consórcio de Veículos", icon: Car, min: 45000, max: 300000, step: 5000 },
@@ -92,10 +91,11 @@ export function Simulator() {
     setBid(0);
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const text = `Olá Yuri! Fiz uma simulação no seu site.%0A%0A*Detalhes:*%0A- Consórcio de: ${type.id}%0A- Valor do crédito: ${formatCurrency(credit)}%0A- Objetivo: ${objective}${objective === "Lance imediato" ? `%0A- Valor do lance: ${formatCurrency(bid)}` : ""}%0A%0AMeu nome é ${formData.name}. Gostaria de ver as opções de parcelas!`;
-    const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${text}`;
+    const text = `Olá! Fiz uma simulação no site do Yuri Soares.%0A%0A*Detalhes:*%0A- Consórcio de: ${type.id}%0A- Valor do crédito: ${formatCurrency(credit)}%0A- Objetivo: ${objective}${objective === "Lance imediato" ? `%0A- Valor do lance: ${formatCurrency(bid)}` : ""}%0A%0AMeu nome é ${formData.name}. Gostaria de ver as opções de parcelas!`;
+    const member = await getNextTeamMemberAsync(formData.name);
+    const url = `https://wa.me/${member.phone}?text=${text}`;
     window.open(url, "_blank");
   };
 
@@ -286,7 +286,7 @@ export function Simulator() {
                   className="flex-1 h-14 text-[15px] sm:text-base font-bold bg-[#25D366] hover:bg-[#20bd5a] text-white rounded-xl shadow-md border-none disabled:opacity-50 flex items-center justify-center overflow-hidden"
                 >
                   <Send className="mr-2 w-5 h-5 shrink-0" />
-                  <span className="truncate">Enviar WhatsApp</span>
+                  <span className="truncate">Falar com minha equipe</span>
                 </Button>
               </div>
             </form>
