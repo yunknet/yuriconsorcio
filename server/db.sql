@@ -20,14 +20,16 @@ CREATE TABLE IF NOT EXISTS team_members (
     created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
 );
 
--- 2. Inserir os 3 números da equipe (Yuri + 2 novos atendentes)
+-- 2. Inserir os membros da equipe no rodízio
 INSERT INTO team_members (name, phone) 
 VALUES 
   ('Yuri Soares', '5538991118169'),
-  ('Equipe Yuri (BH)', '5531984175305'),
   ('Equipe Yuri (Norte de Minas)', '5538998422719')
 ON CONFLICT (phone) DO UPDATE 
 SET is_active = TRUE;
+
+-- Para desativar o número anterior de BH (+55 31 8417-5305):
+UPDATE team_members SET is_active = FALSE WHERE phone = '5531984175305';
 
 -- 3. Histórico de Leads Enviados
 CREATE TABLE IF NOT EXISTS lead_dispatches (

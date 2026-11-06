@@ -266,7 +266,7 @@ export function Simulator() {
           <div className="animate-fade-in flex flex-col flex-grow">
             <h3 className="text-xl sm:text-2xl font-bold text-slate-800 mb-1.5">Para onde envio sua simulação?</h3>
             <p className="text-xs sm:text-sm text-slate-500 font-medium mb-4 sm:mb-6">
-              Preencha rapidinho para te enviar os valores no WhatsApp.
+              Preencha rapidinho para eu ou minha equipe te enviar os valores no WhatsApp.
             </p>
 
             <form onSubmit={handleSubmit} className="space-y-4 flex-grow flex flex-col">

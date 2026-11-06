@@ -6,10 +6,9 @@ export interface TeamMember {
 }
 
 /**
- * Lista dos membros da equipe para o rodízio de atendimento.
- * Configurados com o 9º dígito:
- * - +55 (31) 98417-5305 -> 5531984175305
- * - +55 (38) 99842-2719 -> 5538998422719
+ * Lista dos membros da equipe para o rodízio de atendimento:
+ * - Yuri Soares: +55 (38) 99111-8169 -> 5538991118169
+ * - Equipe Yuri (Norte de Minas): +55 (38) 99842-2719 -> 5538998422719
  */
 export const TEAM_MEMBERS: TeamMember[] = [
   {
@@ -17,12 +16,6 @@ export const TEAM_MEMBERS: TeamMember[] = [
     name: "Yuri Soares",
     phone: "5538991118169",
     displayPhone: "+55 (38) 99111-8169",
-  },
-  {
-    id: "equipe-1",
-    name: "Equipe Yuri (BH)",
-    phone: "5531984175305",
-    displayPhone: "+55 (31) 98417-5305",
   },
   {
     id: "equipe-2",
@@ -147,12 +140,6 @@ export async function getNextTeamMemberAsync(clientName?: string): Promise<TeamM
       if (data?.member?.phone) {
         const found = TEAM_MEMBERS.find((m) => m.phone === data.member.phone);
         if (found) return found;
-        return {
-          id: String(data.member.id),
-          name: data.member.name || "Equipe Yuri Soares",
-          phone: data.member.phone,
-          displayPhone: data.member.phone,
-        };
       }
     }
   } catch {
