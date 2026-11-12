@@ -89,7 +89,7 @@ export function getNextTeamMember(clientName?: string): TeamMember {
 
     localStorage.setItem(STORAGE_KEY_INDEX, nextIndex.toString());
     localStorage.setItem(STORAGE_KEY_TIMESTAMP, Date.now().toString());
-  } catch (e) {
+  } catch {
     nextIndex = new Date().getHours() % TEAM_MEMBERS.length;
   }
 

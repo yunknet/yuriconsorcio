@@ -60,7 +60,7 @@ export function initUTMTracking(): UTMParams {
     if (stored) {
       return JSON.parse(stored);
     }
-  } catch (e) {
+  } catch {
     // Silencioso
   }
 
@@ -76,7 +76,9 @@ export function trackPageView() {
     // Incrementa na sessão atual
     const views = parseInt(localStorage.getItem(VIEWS_STORAGE_KEY) || "0", 10) + 1;
     localStorage.setItem(VIEWS_STORAGE_KEY, views.toString());
-  } catch {}
+  } catch {
+    // Silencioso
+  }
 }
 
 /**
@@ -91,27 +93,27 @@ export function trackWhatsAppClick(buttonLocation: string = "simulador") {
     localStorage.setItem(CLICKS_STORAGE_KEY, clicks.toString());
 
     // 2. Dispara evento no Meta Pixel (se existir na página)
-    if (typeof (window as any).fbq === "function") {
-      (window as any).fbq("track", "Contact", {
+    if (typeof window.fbq === "function") {
+      window.fbq("track", "Contact", {
         content_name: "WhatsApp Click",
         content_category: buttonLocation,
       });
     }
 
     // 3. Dispara evento no Google Analytics / GTM (se existir)
-    if (typeof (window as any).gtag === "function") {
-      (window as any).gtag("event", "click_whatsapp", {
+    if (typeof window.gtag === "function") {
+      window.gtag("event", "click_whatsapp", {
         event_category: "Conversion",
         event_label: buttonLocation,
       });
     }
-    if ((window as any).dataLayer && Array.isArray((window as any).dataLayer)) {
-      (window as any).dataLayer.push({
+    if (window.dataLayer && Array.isArray(window.dataLayer)) {
+      window.dataLayer.push({
         event: "whatsapp_click",
         buttonLocation,
       });
     }
-  } catch (e) {
+  } catch {
     // Silencioso
   }
 }
@@ -142,7 +144,7 @@ export function getUTMSummaryTag(): string {
 export function redirectToWhatsApp(url: string) {
   if (typeof window === "undefined") return;
 
-  const userAgent = navigator.userAgent || navigator.vendor || (window as any).opera || "";
+  const userAgent = navigator.userAgent || navigator.vendor || window.opera || "";
   const isMobile =
     /iPhone|iPad|iPod|Android|webOS|BlackBerry|IEMobile|Opera Mini/i.test(userAgent) ||
     /Instagram|FBAN|FBAV/i.test(userAgent) ||

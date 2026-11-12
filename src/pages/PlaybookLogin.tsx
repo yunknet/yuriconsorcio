@@ -50,7 +50,7 @@ export default function PlaybookLogin() {
           description: data.error || "Verifique seus dados.",
         });
       }
-    } catch (error) {
+    } catch {
       toast({
         variant: "destructive",
         title: "Erro de conexão",
